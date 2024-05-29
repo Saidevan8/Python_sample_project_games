@@ -1,5 +1,3 @@
-#CREATING EMPTY LIST FOR THE TIC-TAC-TOE GAME
-l=[[" "," "," "],[" "," "," "],[" "," "," "]]
 #FUNCTION USED FOR THE PRINTING TIC-TAC-TOE BOXES
 def printlist(l):
     for i in range(len(l)):
@@ -50,67 +48,78 @@ def check_space(a,b):
         return False
     return True
 #MAIN PROGRAM
-r=[0,1,2,3,4,5,6,7,8]
-printlist(l)
-i=0
-while(i<9):
-    if(i%2==0):
-        k=int(input("X turn to choose[0,1,2],[3,4,5],[6,7,8]:"))
-        if(k<3 and k>=0):
-            if(check_space(0,k)):
-                l[0][k]="X"
-                i+=1
+def main(l):
+    printlist(l)
+    i=0
+    try:
+        while(i<9):
+            if(i%2==0):
+                k=int(input("X turn to choose[0,1,2],[3,4,5],[6,7,8]:"))
+                if(k<3 and k>=0):
+                    if(check_space(0,k)):
+                        l[0][k]="X"
+                        i+=1
+                    else:
+                        print("Space is already filled")
+                    printlist(l)
+                elif(k>=3 and k<=5):
+                    if(check_space(1,k%3)):
+                        l[1][k%3]="X"
+                        i+=1
+                    else:
+                        print("Space is already filled")
+                    printlist(l)
+                elif(k>=6 and k<=8):
+                    if(check_space(2,k%3)):
+                        l[2][k%3]="X"
+                        i+=1
+                    else:
+                        print("Space is already filled")
+                    printlist(l)
+                else:
+                    print("INVALID INPUT")
             else:
-                print("Space is already filled")
-            printlist(l)
-        elif(k>=3 and k<=5):
-            if(check_space(1,k%3)):
-                l[1][k%3]="X"
-                i+=1
-            else:
-                print("Space is already filled")
-            printlist(l)
-        elif(k>=6 and k<=8):
-            if(check_space(2,k%3)):
-                l[2][k%3]="X"
-                i+=1
-            else:
-                print("Space is already filled")
-            printlist(l)
-        else:
-             print("INVALID INPUT")
-    else:
-        k=int(input("O turn to choose[0,1,2],[3,4,5],[6,7,8]:"))
-        if(k<3 and k>=0):
-            if(check_space(0,k)):
-                l[0][k]="O"
-                i+=1
-            else:
-                print("Space is already filled")
-            printlist(l)
-        elif(k>=3 and k<=5):
-            if(check_space(1,k%3)):
-                l[1][k%3]="O"
-                i+=1
-            else:
-                print("Space is already filled")
-            printlist(l)
-        elif(k>=6 and k<=8):
-            if(check_space(2,k%3)):
-                l[2][k%3]="O"
-                i+=1
-            else:
-                print("Space is already filled")
-            printlist(l)
-        else:
-            print("INVALID INPUT")
-    if(i>=4):
-        c=condition(l)
-        if(c==True):
-            break
-        else:
-            pass
-    if(i==9):
-        c=condition(l)
-        if(c==False):
-            print("DRAW")
+                k=int(input("O turn to choose[0,1,2],[3,4,5],[6,7,8]:"))
+                if(k<3 and k>=0):
+                    if(check_space(0,k)):
+                        l[0][k]="O"
+                        i+=1
+                    else:
+                        print("Space is already filled")
+                    printlist(l)
+                elif(k>=3 and k<=5):
+                    if(check_space(1,k%3)):
+                        l[1][k%3]="O"
+                        i+=1
+                    else:
+                        print("Space is already filled")
+                    printlist(l)
+                elif(k>=6 and k<=8):
+                    if(check_space(2,k%3)):
+                        l[2][k%3]="O"
+                        i+=1
+                    else:
+                        print("Space is already filled")
+                    printlist(l)
+                else:
+                    print("INVALID INPUT")
+            if(i>=4):
+                c=condition(l)
+                if(c==True):
+                    break
+                else:
+                    pass
+            if(i==9):
+                c=condition(l)
+                if(c==False):
+                    print("DRAW")
+    except:
+        print("INVALID INPUT PLEASE RESTART THE GAME")
+choice='y'
+while(choice=='y' or choice=='Y'):
+    print("********** TIC-TAC-TOE **********")
+    #CREATING EMPTY LIST FOR THE TIC-TAC-TOE GAME
+    l=[[" "," "," "],[" "," "," "],[" "," "," "]]
+    main(l)
+    choice=input("Do you want to play again(y/n):")
+print("ENJOY THE GAME")
